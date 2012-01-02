@@ -15,7 +15,7 @@ def _render_to_result_list(request, sites, template_name='kong/index.html'):
     flot_val = {}
     for site in sites:
         results = site.latest_results()
-        ret_val[site.slug].extend(results)
+        ret_val[site].extend(results)
         for result in results:
             flot_val["%s-%s" % (result.site.slug, result.test.slug)] = flotify(result)
     return render_to_response(template_name,
@@ -109,7 +109,7 @@ def dashboard(request):
             if not result.succeeded:
                 succ = False
                 fail = result
-        ret_val[site.slug] = succ
+        ret_val[site] = succ
     return render_to_response('kong/dashboard.html',
                        {'results': ret_val},
                        context_instance=RequestContext(request))

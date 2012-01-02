@@ -47,6 +47,10 @@ class Command(BaseCommand):
 
         #This is mainly for Nagios reporting.
         if passed:
-            return 0
+            print '0'
         else:
-            return 2
+            import sys
+            print '2'
+            sys.exit(2)
+
+            
